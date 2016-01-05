@@ -1,0 +1,8 @@
+
+  <%= simple_form_for @chamber do |ch| %>
+    <%= ch.input :name, label: "Name of New Chamber" %>
+    <%= ch.input :description %>
+    <%= ch.input :image_uri %>
+    <%= ch.button :submit %>
+  <% end %>
+
