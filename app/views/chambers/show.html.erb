@@ -2,4 +2,9 @@
   <div class="container-image"><%= image_tag @chamber.image_uri %></div>
   <h2><%= @chamber.name %></h2>
   <p><%= @chamber.description %></p>
+  <ul class="nav nav-pills">
+    <li role="presentation"><%= link_to "Back", chambers_path %></li>
+    <li role="presentation"><%= link_to "Edit", edit_chamber_path %></li>
+    <li role="presentation"><%= link_to "Delete", chamber_path, method: :delete, data: {confirm: "Are you sure?"} %></li>
+  </ul>
 </div>
