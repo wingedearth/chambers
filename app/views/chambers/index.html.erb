@@ -1,2 +1,11 @@
-<h1>Chambers Index</h1>
-
+<div class="container">
+<h1>Chambers</h1>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Add Chamber", new_chamber_path %><br><br>
+  <ul>
+    <% @chambers.each do |chamber| %>
+      <li>
+        <%= link_to chamber.name, chamber_path(chamber) %><br><br>
+      </li>
+    <% end %>
+  </ul>
+</div>

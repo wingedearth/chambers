@@ -1,1 +1,12 @@
-<h1>books index view</h1>
+
+<div class="container">
+<h1>Books</h1>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Add Book", new_book_path %><br><br>
+  <ul>
+    <% @books.each do |book| %>
+      <li>
+        <%= link_to book.title, book_path(book) %>, by <%= book.author %><br><br>
+      </li>
+    <% end %>
+  </ul>
+</div>

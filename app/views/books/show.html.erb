@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="container-image"><%= image_tag @book.image_uri %></div>
+  <h2><%= link_to @book.title, @book.book_uri %></h2>
+  <h3><%= @book.author %></h3>
+  <p><%= @book.description %></p>
+  <p><%= link_to "DOWNLOAD", @book.book_uri %></p>
+</div>

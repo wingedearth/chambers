@@ -16,7 +16,7 @@ class ChambersController < ApplicationController
     @chamber = Chamber.new(chamber_params)
 
     if @chamber.save
-      redirect_to root_path
+      redirect_to chambers_path
     else
       render 'new'
     end
