@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  resources :books
-  root "books#index"
+  root 'welcome#index', page: 'index'
+  resources :books, :chambers
+
 end

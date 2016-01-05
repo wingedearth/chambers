@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20160105081728) do
     t.string   "book_uri"
     t.string   "image_uri"
     t.integer  "chamber_id"
-    t.boolean  "featured"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "featured",    default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "chambers", force: :cascade do |t|
