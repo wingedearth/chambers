@@ -18,3 +18,23 @@
   height: 100%;
   z-index: -1;
 }
+
+.container {
+  background-color: white;
+  margin-top: 20px;
+}
+
+.container-image {
+  width: 320px;
+  padding: 10px 10px 10px 10px;
+}
+
+.container-image img {
+  width: 300px;
+  float: left;
+  padding: 10px 10px 10px 10px;
+}
+
+.navbar {
+  padding-right: 20px;
+}
