@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160105004821) do
+ActiveRecord::Schema.define(version: 20160105081728) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20160105004821) do
     t.boolean  "featured"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "chambers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "image_uri",   default: "http://www.onlinecollege.org/wp-content/uploads/George%20Peabody%20Library.jpg"
+    t.string   "featured",    default: "f"
+    t.datetime "created_at",                                                                                             null: false
+    t.datetime "updated_at",                                                                                             null: false
   end
 
 end
