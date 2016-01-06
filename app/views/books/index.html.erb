@@ -1,7 +1,9 @@
 
 <div class="container">
 <h1>Books</h1>
+<% if user_signed_in? %>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Add Book", new_book_path %><br><br>
+<% end %>
   <ul>
     <% @books.each do |book| %>
       <li>

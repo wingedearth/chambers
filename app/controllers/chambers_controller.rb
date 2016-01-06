@@ -9,11 +9,11 @@ class ChambersController < ApplicationController
   end
 
   def new
-    @chamber = Chamber.new
+    @chamber = current_user.chambers.build
   end
 
   def create
-    @chamber = Chamber.new(chamber_params)
+    @chamber = current_user.chambers.build(chamber_params)
 
     if @chamber.save
       redirect_to chambers_path
