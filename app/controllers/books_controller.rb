@@ -2,7 +2,8 @@ class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :destroy]
 
   def index
-    @books = Book.all.order('title ASC')
+    @chamber = Chamber.find(params[:id])
+    @books = @chamber.books
   end
 
   def show
@@ -10,13 +11,14 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @chamber = current_user.chambers.build
   end
 
   def create
     @book = Book.new(book_params)
 
     if @book.save
-      redirect_to books_path
+      redirect_to chamber_books_path
     else
       render 'new'
     end

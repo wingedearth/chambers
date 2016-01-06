@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20160106064445) do
     t.string   "featured",    default: "f"
     t.datetime "created_at",                                                                                             null: false
     t.datetime "updated_at",                                                                                             null: false
+    t.integer  "user_id"
   end
 
   create_table "installs", force: :cascade do |t|

@@ -1,11 +1,14 @@
 class ChambersController < ApplicationController
-  before_action :find_chamber, only: [:show, :edit, :update, :destroy]
+  before_action :find_chamber, only: [:chamberbooksindex, :show, :edit, :update, :destroy]
 
   def index
     @chambers = Chamber.all.order('name ASC')
   end
 
   def show
+  end
+
+  def chamberbooksindex
   end
 
   def new
@@ -16,7 +19,8 @@ class ChambersController < ApplicationController
     @chamber = current_user.chambers.build(chamber_params)
 
     if @chamber.save
-      redirect_to chambers_path
+      # current_user.chambers << @chamber
+      redirect_to chamber_path(@chamber)
     else
       render 'new'
     end
