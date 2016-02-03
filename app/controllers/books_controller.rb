@@ -9,13 +9,14 @@ class BooksController < ApplicationController
   def show
   end
 
-  def new
-    @book = Book.new
-    @chamber = current_user.chambers.build
+  def new(chamber_id)
+    # @book = Book.new
+    @chamber = Chamber.find(chamber_id)
+    @book = @chamber.books.build
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = @chamber.books.build(book_params)
 
     if @book.save
       redirect_to chamber_books_path
