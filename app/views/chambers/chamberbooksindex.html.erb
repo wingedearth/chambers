@@ -2,7 +2,7 @@
 <div class="container">
 <h1><%= "Books in #{@chamber.name}"%></h1>
 <% if user_signed_in? %>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Add Book", new_book_path %><br><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Add Book", new_book_path(@chamber.id) %><br><br>
 <% end %>
   <ul>
     <% @chamber.books.each do |book| %>
