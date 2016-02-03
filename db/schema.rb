@@ -11,11 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106064445) do
+ActiveRecord::Schema.define(version: 20160203072549) do
+
+  create_table "access_types", force: :cascade do |t|
+    t.boolean  "curates",    default: false
+    t.integer  "user_id"
+    t.integer  "chamber_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "access_types", ["chamber_id"], name: "index_access_types_on_chamber_id"
+  add_index "access_types", ["user_id"], name: "index_access_types_on_user_id"
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.string   "author"
+    t.string   "genre"
     t.string   "description"
     t.string   "book_uri"
     t.string   "image_uri"
@@ -24,6 +36,8 @@ ActiveRecord::Schema.define(version: 20160106064445) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
+
+  add_index "books", ["chamber_id"], name: "index_books_on_chamber_id"
 
   create_table "chambers", force: :cascade do |t|
     t.string   "name"
@@ -52,6 +66,18 @@ ActiveRecord::Schema.define(version: 20160106064445) do
 
   add_index "installs", ["email"], name: "index_installs_on_email", unique: true
   add_index "installs", ["reset_password_token"], name: "index_installs_on_reset_password_token", unique: true
+
+  create_table "reviews", force: :cascade do |t|
+    t.boolean  "featured",   default: false
+    t.text     "text"
+    t.integer  "book_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "reviews", ["book_id"], name: "index_reviews_on_book_id"
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
