@@ -1,6 +1,6 @@
 <div class="container">
 <h1>Chambers</h1>
-<% if user_signed_in? %>
+<% if current_user %>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Add Chamber", new_chamber_path %><br><br>
 <% end %>
 
