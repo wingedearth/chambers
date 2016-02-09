@@ -33,10 +33,12 @@
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'Register', new_user_path %></li>
         <% if current_user %>
+
           <li><%= link_to 'Log Out', session_path('dummy'), method: :delete %></li>
+          <li><%= link_to 'Account Settings', edit_user_path(current_user) %></li>
         <% else %>
+          <li><%= link_to 'Register', new_user_path %></li>
           <li><%= link_to 'Log In', login_path %></li>
         <% end %>
     </ul>

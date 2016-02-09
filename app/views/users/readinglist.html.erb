@@ -1,0 +1,16 @@
+<div class="container">
+  <h3>Reading List</h3>
+  <% if current_user %>
+    <ul class="list-group container">
+    <% if current_user.books.count > 0 %>
+      <% current_user.books.each do |book| %>
+       <li class="list-group-item"><%= link_to book.title, book_path(book) %></li>
+      <% end %>
+    </ul>
+   <% else %>
+     <h4>You have no books in your reading list.</h4>
+   <% end %>
+  <% else %>
+   <h4>Please login or register to see your reading list.</h4>
+  <% end %>
+</div>

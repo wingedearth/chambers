@@ -1,0 +1,24 @@
+<%= simple_form_for @user do |f| %>
+
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>There is an error in your form. That means need to change something. You probably left something blank or used some weird symbol somewhere.</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :handle, label: "Name/Handle" %>
+  <%= f.input :email %>
+  <%= f.input :city, label: "City" %>
+  <%= f.input :state, label: "State" %>
+  <%= f.input :description, label: "Describe yourself" %>
+  <%= f.input :image_uri %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.submit %>
+
+<% end %>

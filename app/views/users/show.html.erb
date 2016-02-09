@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="container-image">
+    <%= image_tag @user.image_uri %>
+  </div>
+
+  <h2><%= @user.handle %></h2>
+  <p><%= @user.description %></p>
+  <% if @user.chambers.count > 0 %>
+    <h4>Available Chambers:</h4>
+    <ul>
+      <% @user.chambers.each do |c| %>
+        <li><%= link_to c.name, chamber_path(c) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p> This Curator presently has no chambers. How did you even end up here? Weirdo. </p>
+  <% end %>
+</div>
+
+
+
+
+
+
+

@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 
+    def logoutuser
+      @logoutuser = 'Log Out #{current_user.handle}'
+    end
+
     def authorize
       redirect_to login_path, alert: "You are not authorized. Login or suffer the consequences!" if current_user.nil?
     end
