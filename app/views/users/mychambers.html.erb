@@ -1,8 +1,9 @@
 <div class="container">
   <h2 class="columnlabels">My Chambers</h2>
-  <ul class="list-group columnlabels" id="mycham">
+
+  <ul class="list-group">
     <% current_user.chambers.each do |ch| %>
-      <li class="list-group-item container">
+      <li class="list-group-item">
         <%= link_to ch.name, chamber_path(ch) %>
           <% if current_user.access_types.find_by(chamber_id: ch.id).curates %>
             <span class="badge">Curator</span>
@@ -11,4 +12,3 @@
     <% end %>
   </ul>
 </div>
-
