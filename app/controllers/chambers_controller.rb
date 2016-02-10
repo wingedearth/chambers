@@ -6,6 +6,10 @@ class ChambersController < ApplicationController
   end
 
   def show
+    @chamber = Chamber.find(params["id"])
+    if (current_user)
+      current_user.update_attributes(:current_chamber_id => @chamber.id)
+    end
   end
 
   def chamberbooksindex

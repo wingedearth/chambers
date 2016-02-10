@@ -2,11 +2,15 @@ class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :destroy]
 
   def index
-    @chamber = Chamber.find(params[:id])
-    @books = @chamber.books
+    @books = Book.all.order("created_at DESC")
   end
 
   def show
+    @book = Book.find(params[:id])
+    if (current_user)
+      current_user.update_attributes(:current_book_id => @book.id)
+      @chamber = Chamber.find(current_user.current_chamber_id)
+    end
   end
 
   def new(chamber_id)
@@ -34,6 +38,13 @@ class BooksController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def add_to_reading_list
+    current_user.books << Book.find(params[:id])
+    current_user.save
+    flash[:notice] = "The book has been added!"
+    redirect_to readinglist_path
   end
 
   def destroy

@@ -3,9 +3,13 @@
   <h2><%= @chamber.name %></h2>
   <p><%= @chamber.description %></p>
   <ul class="nav nav-pills">
-    <li role="presentation"><%= link_to "Back", chambers_path %></li>
-    <li role="presentation"><%= link_to "Edit", edit_chamber_path %></li>
-    <li role="presentation"><%= link_to "Delete", chamber_path, method: :delete, data: {confirm: "Are you sure?"} %></li>
-    <li role="presentation"><%= link_to "Books", chamber_books_path %></li>
+    <% if current_user.access_types.find_by(chamber_id: @chamber.id) %>
+      <% if current_user.access_types.find_by(chamber_id: @chamber.id).curates  %>
+        <li role="presentation"><%= link_to "Edit", edit_chamber_path %></li>
+        <li role="presentation"><%= link_to "Delete", chamber_path, method: :delete, data: {confirm: "Are you sure?"} %></li>
+      <% end %>
+    <% end %>
+    <li role="presentation"><%= link_to "Home", root_path %></li>
+    <li role="presentation"><%= link_to "See Bookshelf", chamber_books_path %></li>
   </ul>
 </div>
