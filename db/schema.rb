@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204033943) do
+ActiveRecord::Schema.define(version: 20160210045058) do
 
-   # These are extensions that must be enabled in order to support this database
+  # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "access_types", force: :cascade do |t|
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20160204033943) do
     t.datetime "updated_at",                 null: false
   end
 
-  add_index "access_types", ["chamber_id"], name: "index_access_types_on_chamber_id"
-  add_index "access_types", ["user_id"], name: "index_access_types_on_user_id"
+  add_index "access_types", ["chamber_id"], name: "index_access_types_on_chamber_id", using: :btree
+  add_index "access_types", ["user_id"], name: "index_access_types_on_user_id", using: :btree
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -40,15 +40,13 @@ ActiveRecord::Schema.define(version: 20160204033943) do
     t.datetime "updated_at",                  null: false
   end
 
-  add_index "books", ["chamber_id"], name: "index_books_on_chamber_id"
-
   create_table "books_users", force: :cascade do |t|
     t.integer "book_id"
     t.integer "user_id"
   end
 
-  add_index "books_users", ["book_id"], name: "index_books_users_on_book_id"
-  add_index "books_users", ["user_id"], name: "index_books_users_on_user_id"
+  add_index "books_users", ["book_id"], name: "index_books_users_on_book_id", using: :btree
+  add_index "books_users", ["user_id"], name: "index_books_users_on_user_id", using: :btree
 
   create_table "chambers", force: :cascade do |t|
     t.string   "name"
@@ -68,8 +66,8 @@ ActiveRecord::Schema.define(version: 20160204033943) do
     t.datetime "updated_at",                 null: false
   end
 
-  add_index "reviews", ["book_id"], name: "index_reviews_on_book_id"
-  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
+  add_index "reviews", ["book_id"], name: "index_reviews_on_book_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
@@ -86,4 +84,10 @@ ActiveRecord::Schema.define(version: 20160204033943) do
     t.datetime "updated_at",                                             null: false
   end
 
+  add_foreign_key "access_types", "chambers"
+  add_foreign_key "access_types", "users"
+  add_foreign_key "books_users", "books"
+  add_foreign_key "books_users", "users"
+  add_foreign_key "reviews", "books"
+  add_foreign_key "reviews", "users"
 end
