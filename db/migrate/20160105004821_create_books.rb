@@ -9,7 +9,7 @@ class CreateBooks < ActiveRecord::Migration
       t.string :image_uri
       t.integer :chamber_id
       t.boolean :featured, default: false
-      t.references :chamber, index: true, foreign_key: true
+      # t.references :chamber, index: true, foreign_key: true
 
       t.timestamps null: false
     end
