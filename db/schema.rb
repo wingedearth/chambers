@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20160210045058) do
     t.string   "genre"
     t.string   "description"
     t.string   "book_uri"
-    t.string   "image_uri"
+    t.string   "image_uri", default: "http://www.thedailyrash.com/wp-content/uploads/2012/08/old_book.jpg"
     t.integer  "chamber_id"
     t.boolean  "featured",    default: false
     t.datetime "created_at",                  null: false
