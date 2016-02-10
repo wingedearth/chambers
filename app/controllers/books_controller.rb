@@ -13,17 +13,17 @@ class BooksController < ApplicationController
     end
   end
 
-  def new(chamber_id)
+  def new
     # @book = Book.new
-    @chamber = Chamber.find(chamber_id)
+    @chamber = Chamber.find(current_user.current_chamber_id)
     @book = @chamber.books.build
   end
 
   def create
+    @chamber = Chamber.find(current_user.current_chamber_id)
     @book = @chamber.books.build(book_params)
-
     if @book.save
-      redirect_to chamber_books_path
+      redirect_to chamber_books_path(current_user.current_chamber_id)
     else
       render 'new'
     end
