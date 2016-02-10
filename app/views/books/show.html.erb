@@ -7,11 +7,12 @@
     <li role="presentation"><%= link_to "Download", @book.book_uri %></li>
     <% if current_user %>
       <li role="presentation"><%= link_to "Add To Reading List", add_to_reading_list_path(@book) %></li>
-    <% end %>
-    <% if current_user.access_types.find_by(chamber_id: @chamber.id) %>
-      <% if current_user.access_types.find_by(chamber_id: @chamber.id).curates  %>
-        <li role="presentation"><%= link_to "Edit", edit_book_path %></li>
-        <li role="presentation"><%= link_to "Delete", book_path, method: :delete, data: {confirm: "Are you sure?"} %></li>
+
+      <% if current_user.access_types.find_by(chamber_id: @chamber.id) %>
+        <% if current_user.access_types.find_by(chamber_id: @chamber.id).curates  %>
+          <li role="presentation"><%= link_to "Edit", edit_book_path %></li>
+          <li role="presentation"><%= link_to "Delete", book_path, method: :delete, data: {confirm: "Are you sure?"} %></li>
+        <% end %>
       <% end %>
     <% end %>
   </ul>

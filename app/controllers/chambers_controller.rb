@@ -46,6 +46,16 @@ class ChambersController < ApplicationController
     redirect_to chambers_path
   end
 
+  def subscribe
+    @chamber = Chamber.find(params[:id])
+    current_user.chambers << @chamber
+    current_user.save
+    redirect_to mychambers_path
+  end
+
+  def is_curated selected_chamber
+    current_user.access_types.find_by(chamber_id: selected_chamber.id).curates
+  end
 
   private
 

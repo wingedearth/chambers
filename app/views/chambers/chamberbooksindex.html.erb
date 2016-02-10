@@ -2,7 +2,11 @@
 <div class="container">
 <h1><%= "Books in #{@chamber.name}"%></h1>
 <% if current_user %>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Add Book", new_book_path(@chamber.id) %><br><br>
+  <% if current_user.access_types.find_by(chamber_id: @chamber.id) %>
+    <% if current_user.access_types.find_by(chamber_id: @chamber.id).curates  %>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Add Book", new_book_path(@chamber.id) %><br><br>
+    <% end %>
+  <% end %>
 <% end %>
   <ul>
     <% @chamber.books.each do |book| %>
